@@ -27,6 +27,12 @@ steps:
     outputType: 'Process'
     orchestratorConnection: 'UiPath_Testing'
     outputPath: '$(Build.ArtifactStagingDirectory)\Output'
+- task: UiPathDeploy@2
+  inputs:
+    orchestratorConnection: 'UiPath_Testing'
+    packagesPath: '$(Build.ArtifactStagingDirectory)\Output'
+    folderName: 'Shared'
+    entryPoints: 'Main.xaml'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
